@@ -8,17 +8,59 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Start Page-->
+        <!--Welcome to Simple Barometer-->
         <scene sceneID="jLY-xV-FGX">
             <objects>
                 <viewController id="uLS-gK-L9p" customClass="StartPage" customModule="simple_barometer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yyN-P0-PSm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ha-dr-ztk">
+                                <rect key="frame" x="0.0" y="106" width="393" height="74"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="0ud-VN-3Rt">
+                                <rect key="frame" x="0.0" y="183" width="393" height="555"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKc-14-AR0">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="183"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAQ-YV-uli">
+                                        <rect key="frame" x="0.0" y="186" width="393" height="183"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmf-Td-SHW">
+                                        <rect key="frame" x="0.0" y="372" width="393" height="183"/>
+                                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVH-4q-0Qe">
+                                <rect key="frame" x="0.0" y="741" width="393" height="77"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Kfj-oW-3Hv"/>
                         <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <constraints>
+                            <constraint firstItem="0ud-VN-3Rt" firstAttribute="leading" secondItem="Kfj-oW-3Hv" secondAttribute="leading" id="4b7-pI-tgd"/>
+                            <constraint firstItem="0ud-VN-3Rt" firstAttribute="top" secondItem="0ha-dr-ztk" secondAttribute="bottom" constant="3" id="6jw-wT-5pS"/>
+                            <constraint firstItem="Kfj-oW-3Hv" firstAttribute="bottom" secondItem="0ud-VN-3Rt" secondAttribute="bottom" constant="80" id="IFu-49-hQP"/>
+                            <constraint firstItem="Kfj-oW-3Hv" firstAttribute="bottom" secondItem="DVH-4q-0Qe" secondAttribute="bottom" id="RKE-MN-kgz"/>
+                            <constraint firstItem="Kfj-oW-3Hv" firstAttribute="trailing" secondItem="DVH-4q-0Qe" secondAttribute="trailing" id="aCm-6j-h4o"/>
+                            <constraint firstItem="Kfj-oW-3Hv" firstAttribute="trailing" secondItem="0ud-VN-3Rt" secondAttribute="trailing" id="dPU-Vp-Kqm"/>
+                            <constraint firstItem="0ha-dr-ztk" firstAttribute="leading" secondItem="Kfj-oW-3Hv" secondAttribute="leading" id="dVo-tP-ONS"/>
+                            <constraint firstItem="0ud-VN-3Rt" firstAttribute="top" secondItem="Kfj-oW-3Hv" secondAttribute="top" constant="80" id="grS-t3-LIp"/>
+                            <constraint firstItem="Kfj-oW-3Hv" firstAttribute="trailing" secondItem="0ha-dr-ztk" secondAttribute="trailing" id="iQQ-hA-Fgh"/>
+                            <constraint firstItem="0ha-dr-ztk" firstAttribute="top" secondItem="Kfj-oW-3Hv" secondAttribute="top" constant="3" id="ox7-on-J4r"/>
+                            <constraint firstItem="DVH-4q-0Qe" firstAttribute="top" secondItem="0ud-VN-3Rt" secondAttribute="bottom" constant="3" id="pM8-US-X7p"/>
+                            <constraint firstItem="DVH-4q-0Qe" firstAttribute="leading" secondItem="Kfj-oW-3Hv" secondAttribute="leading" id="vKT-YR-inn"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Nna-sa-hqZ"/>
+                    <navigationItem key="navigationItem" title="Welcome to Simple Barometer" id="Nna-sa-hqZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du2-Gh-E1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,8 +86,26 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
