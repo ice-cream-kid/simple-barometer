@@ -20,6 +20,9 @@ class StartPage : UIViewController {
     @IBOutlet weak var currentConditionsView : UIView!
     @IBOutlet weak var currentConditionsLabel : UILabel!
     @IBOutlet weak var currentConditionsButton : UIButton!
+    
+    @IBOutlet weak var currentPressureNumericLabel : UILabel!
+    @IBOutlet weak var currentPressureUnitLabel : UILabel!
 
     @IBOutlet weak var dayView : UIView!
     @IBOutlet weak var dayViewLabel : UILabel!
@@ -34,6 +37,10 @@ class StartPage : UIViewController {
 
     
     override func viewDidLoad() {
+        
+        API_Controller().getBlob()
+        
+        
         
     }
 }

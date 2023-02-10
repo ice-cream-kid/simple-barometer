@@ -60,21 +60,24 @@
                                                     <segue destination="8Pz-IX-T43" kind="show" id="i4F-Aw-5Kp"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-LZ-lUy">
-                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="393" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Current Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-LZ-lUy">
+                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="393" height="31.333333333333329"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJ0-j4-LRI">
-                                                <rect key="frame" x="99.000000000000014" y="46.666666666666664" width="195.33333333333337" height="89.666666666666686"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="28.90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJ0-j4-LRI">
+                                                <rect key="frame" x="91.666666666666671" y="46.666666666666664" width="209.66666666666663" height="89.666666666666686"/>
+                                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="75"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="inHg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqE-hf-8qA">
-                                                <rect key="frame" x="178.66666666666666" y="136.33333333333331" width="35.666666666666657" height="20.333333333333343"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="178" y="136.33333333333331" width="37.333333333333343" height="20.333333333333343"/>
+                                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -83,9 +86,10 @@
                                         <constraints>
                                             <constraint firstItem="BJ0-j4-LRI" firstAttribute="centerX" secondItem="fKc-14-AR0" secondAttribute="centerX" id="99V-N1-pNK"/>
                                             <constraint firstAttribute="trailing" secondItem="GG3-LZ-lUy" secondAttribute="trailing" id="BZD-Fj-sXa"/>
+                                            <constraint firstItem="BJ0-j4-LRI" firstAttribute="top" secondItem="GG3-LZ-lUy" secondAttribute="bottom" constant="5.3300000000000001" id="DEC-GI-8Zr"/>
                                             <constraint firstItem="ajx-xg-Qhd" firstAttribute="leading" secondItem="fKc-14-AR0" secondAttribute="leading" id="DSv-aM-5vB"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MqE-hf-8qA" secondAttribute="bottom" constant="8" id="K2w-I2-1UU"/>
                                             <constraint firstAttribute="trailing" secondItem="ajx-xg-Qhd" secondAttribute="trailing" id="NgW-g8-x14"/>
-                                            <constraint firstItem="BJ0-j4-LRI" firstAttribute="centerY" secondItem="fKc-14-AR0" secondAttribute="centerY" id="PfG-5f-rx6"/>
                                             <constraint firstItem="ajx-xg-Qhd" firstAttribute="top" secondItem="fKc-14-AR0" secondAttribute="top" id="Vix-fn-3zl"/>
                                             <constraint firstAttribute="bottom" secondItem="ajx-xg-Qhd" secondAttribute="bottom" id="W7F-rz-cwv"/>
                                             <constraint firstItem="MqE-hf-8qA" firstAttribute="top" secondItem="BJ0-j4-LRI" secondAttribute="bottom" id="ead-qJ-FGR"/>
@@ -195,6 +199,8 @@
                         <outlet property="currentConditionsButton" destination="ajx-xg-Qhd" id="JSz-rv-UGV"/>
                         <outlet property="currentConditionsLabel" destination="GG3-LZ-lUy" id="RVM-wx-Ghv"/>
                         <outlet property="currentConditionsView" destination="fKc-14-AR0" id="9JH-ph-sEe"/>
+                        <outlet property="currentPressureNumericLabel" destination="BJ0-j4-LRI" id="4se-Xh-Prh"/>
+                        <outlet property="currentPressureUnitLabel" destination="MqE-hf-8qA" id="HyS-9f-1eH"/>
                         <outlet property="dayView" destination="dAQ-YV-uli" id="7Sh-ca-Qpf"/>
                         <outlet property="dayViewButton" destination="eyS-aL-1tp" id="Ryf-gl-KTg"/>
                         <outlet property="dayViewLabel" destination="cNt-eJ-gfy" id="waL-ud-d9M"/>
@@ -289,6 +295,15 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
