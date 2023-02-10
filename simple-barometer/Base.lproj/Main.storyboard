@@ -134,7 +134,19 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVH-4q-0Qe">
                                 <rect key="frame" x="0.0" y="741" width="393" height="77"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(c) ice-cream-kid 2023" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiT-m9-GZP">
+                                        <rect key="frame" x="108.00000000000001" y="28.333333333333371" width="177.33333333333337" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <constraints>
+                                    <constraint firstItem="aiT-m9-GZP" firstAttribute="centerY" secondItem="DVH-4q-0Qe" secondAttribute="centerY" id="6Bx-L3-BHK"/>
+                                    <constraint firstItem="aiT-m9-GZP" firstAttribute="centerX" secondItem="DVH-4q-0Qe" secondAttribute="centerX" id="e6u-sq-9jr"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kfj-oW-3Hv"/>
@@ -155,6 +167,25 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Nna-sa-hqZ"/>
+                    <connections>
+                        <outlet property="bottomInformationLabel" destination="aiT-m9-GZP" id="UxZ-6w-p0e"/>
+                        <outlet property="bottomInformationView" destination="DVH-4q-0Qe" id="Onx-qh-swT"/>
+                        <outlet property="currentConditionsButton" destination="ajx-xg-Qhd" id="JSz-rv-UGV"/>
+                        <outlet property="currentConditionsLabel" destination="GG3-LZ-lUy" id="RVM-wx-Ghv"/>
+                        <outlet property="currentConditionsView" destination="fKc-14-AR0" id="9JH-ph-sEe"/>
+                        <outlet property="dayView" destination="dAQ-YV-uli" id="7Sh-ca-Qpf"/>
+                        <outlet property="dayViewButton" destination="eyS-aL-1tp" id="Ryf-gl-KTg"/>
+                        <outlet property="dayViewLabel" destination="cNt-eJ-gfy" id="waL-ud-d9M"/>
+                        <outlet property="startPagePanelsStackView" destination="0ud-VN-3Rt" id="dYn-43-41N"/>
+                        <outlet property="subtitleLabel" destination="nvS-1n-Vm8" id="6QN-2o-pbx"/>
+                        <outlet property="tenDayView" destination="rmf-Td-SHW" id="4Rv-ZC-6nd"/>
+                        <outlet property="tenDayViewButton" destination="jeh-Wz-2sK" id="YEz-R3-luU"/>
+                        <outlet property="tenDayViewLabel" destination="vbr-t0-YzJ" id="bVQ-My-zAC"/>
+                        <outlet property="titleLabel" destination="oD8-Qz-MSF" id="Kaa-4x-gq3"/>
+                        <outlet property="titleStackView" destination="Ftw-j8-w0C" id="ZIJ-yE-Dhq"/>
+                        <outlet property="titleStackViewContainer" destination="0ha-dr-ztk" id="Yms-Kn-yjY"/>
+                        <outlet property="view" destination="yyN-P0-PSm" id="xDa-K2-5Mt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du2-Gh-E1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
