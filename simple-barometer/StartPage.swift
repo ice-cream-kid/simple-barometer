@@ -37,10 +37,21 @@ class StartPage : UIViewController {
 
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+            
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        API_Controller().getBlob()
+        API_Controller().getBlobForHome(home: self)
+
+    }
+    
+    func updateCurrentConditions(updatedBlob : Blob) {
         
-        
-        
+        DispatchQueue.main.async {
+            self.currentPressureNumericLabel.text = updatedBlob.currentConditions.pressure.description
+        }
     }
 }
