@@ -66,14 +66,30 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJ0-j4-LRI">
+                                                <rect key="frame" x="99.000000000000014" y="46.666666666666664" width="195.33333333333337" height="89.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="inHg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqE-hf-8qA">
+                                                <rect key="frame" x="178.66666666666666" y="136.33333333333331" width="35.666666666666657" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <constraints>
+                                            <constraint firstItem="BJ0-j4-LRI" firstAttribute="centerX" secondItem="fKc-14-AR0" secondAttribute="centerX" id="99V-N1-pNK"/>
                                             <constraint firstAttribute="trailing" secondItem="GG3-LZ-lUy" secondAttribute="trailing" id="BZD-Fj-sXa"/>
                                             <constraint firstItem="ajx-xg-Qhd" firstAttribute="leading" secondItem="fKc-14-AR0" secondAttribute="leading" id="DSv-aM-5vB"/>
                                             <constraint firstAttribute="trailing" secondItem="ajx-xg-Qhd" secondAttribute="trailing" id="NgW-g8-x14"/>
+                                            <constraint firstItem="BJ0-j4-LRI" firstAttribute="centerY" secondItem="fKc-14-AR0" secondAttribute="centerY" id="PfG-5f-rx6"/>
                                             <constraint firstItem="ajx-xg-Qhd" firstAttribute="top" secondItem="fKc-14-AR0" secondAttribute="top" id="Vix-fn-3zl"/>
                                             <constraint firstAttribute="bottom" secondItem="ajx-xg-Qhd" secondAttribute="bottom" id="W7F-rz-cwv"/>
+                                            <constraint firstItem="MqE-hf-8qA" firstAttribute="top" secondItem="BJ0-j4-LRI" secondAttribute="bottom" id="ead-qJ-FGR"/>
+                                            <constraint firstItem="MqE-hf-8qA" firstAttribute="centerX" secondItem="fKc-14-AR0" secondAttribute="centerX" id="hFI-ZA-mas"/>
                                             <constraint firstItem="GG3-LZ-lUy" firstAttribute="top" secondItem="fKc-14-AR0" secondAttribute="top" constant="10" id="hSc-gt-bV5"/>
                                             <constraint firstItem="GG3-LZ-lUy" firstAttribute="leading" secondItem="fKc-14-AR0" secondAttribute="leading" id="tG0-KK-143"/>
                                         </constraints>
@@ -195,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du2-Gh-E1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1367" y="-704"/>
+            <point key="canvasLocation" x="1365.6488549618321" y="-704.22535211267609"/>
         </scene>
         <!--Current Conditions View Controller-->
         <scene sceneID="TyY-if-hkc">
