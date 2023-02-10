@@ -11,12 +11,9 @@ class API_Controller {
     
 //    var dataBlob : Blob?
     
-    // put in a defines class
-    let apiString : String = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40241?unitGroup=us&elements=datetime%2Cpressure&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json"
-    
     func getBlobForHome(home : StartPage) {
-        
-        guard let url = URL(string: "\(apiString)") else {
+                
+        guard let url = URL(string: "\(API_Strings().pressure40241)") else {
             print("invalid url")
             return
         }
