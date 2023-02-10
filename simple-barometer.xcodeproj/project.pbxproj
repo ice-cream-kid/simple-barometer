@@ -15,6 +15,8 @@
 		894F13892995848B00CF2A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894F13872995848B00CF2A46 /* LaunchScreen.storyboard */; };
 		894F139129958E7100CF2A46 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F139029958E7100CF2A46 /* StartPage.swift */; };
 		894F139429968CF500CF2A46 /* CurrentConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F139329968CF500CF2A46 /* CurrentConditionsViewController.swift */; };
+		89FE18762996AB1200742867 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FE18752996AB1200742867 /* TodayViewController.swift */; };
+		89FE18782996AB1E00742867 /* TenDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FE18772996AB1E00742867 /* TenDayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		894F138A2995848B00CF2A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		894F139029958E7100CF2A46 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
 		894F139329968CF500CF2A46 /* CurrentConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConditionsViewController.swift; sourceTree = "<group>"; };
+		89FE18752996AB1200742867 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		89FE18772996AB1E00742867 /* TenDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenDayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				894F138A2995848B00CF2A46 /* Info.plist */,
 				894F139029958E7100CF2A46 /* StartPage.swift */,
 				894F139229968CD500CF2A46 /* CurrentConditions */,
+				89FE18732996AAC500742867 /* DayView */,
+				89FE18742996AADB00742867 /* TenDayView */,
 			);
 			path = "simple-barometer";
 			sourceTree = "<group>";
@@ -79,6 +85,22 @@
 				894F139329968CF500CF2A46 /* CurrentConditionsViewController.swift */,
 			);
 			path = CurrentConditions;
+			sourceTree = "<group>";
+		};
+		89FE18732996AAC500742867 /* DayView */ = {
+			isa = PBXGroup;
+			children = (
+				89FE18752996AB1200742867 /* TodayViewController.swift */,
+			);
+			path = DayView;
+			sourceTree = "<group>";
+		};
+		89FE18742996AADB00742867 /* TenDayView */ = {
+			isa = PBXGroup;
+			children = (
+				89FE18772996AB1E00742867 /* TenDayViewController.swift */,
+			);
+			path = TenDayView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,8 +176,10 @@
 			files = (
 				894F13812995848A00CF2A46 /* ViewController.swift in Sources */,
 				894F139129958E7100CF2A46 /* StartPage.swift in Sources */,
+				89FE18762996AB1200742867 /* TodayViewController.swift in Sources */,
 				894F139429968CF500CF2A46 /* CurrentConditionsViewController.swift in Sources */,
 				894F137D2995848A00CF2A46 /* AppDelegate.swift in Sources */,
+				89FE18782996AB1E00742867 /* TenDayViewController.swift in Sources */,
 				894F137F2995848A00CF2A46 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

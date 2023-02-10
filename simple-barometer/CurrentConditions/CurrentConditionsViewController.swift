@@ -11,7 +11,6 @@ import UIKit
 class CurrentConditionsViewController : UIViewController {
     
     override func viewDidLoad() {
-        
-        self.navigationController?.navigationItem.title = "Current Conditions"
-    }
+        self.title = "Current Conditions"
+            }
 }
