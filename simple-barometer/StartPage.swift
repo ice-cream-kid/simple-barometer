@@ -35,6 +35,5 @@ class StartPage : UIViewController {
     
     override func viewDidLoad() {
         
-        self.navigationController?.navigationBar.backgroundColor = UIColor.red
     }
 }

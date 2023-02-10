@@ -58,6 +58,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="183"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <segue destination="8Pz-IX-T43" kind="show" id="i4F-Aw-5Kp"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-LZ-lUy">
                                                 <rect key="frame" x="0.0" y="9.9999999999999982" width="393" height="20.333333333333329"/>
@@ -190,6 +193,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du2-Gh-E1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1367" y="-704"/>
+        </scene>
+        <!--Current Conditions View Controller-->
+        <scene sceneID="TyY-if-hkc">
+            <objects>
+                <viewController id="8Pz-IX-T43" customClass="CurrentConditionsViewController" customModule="simple_barometer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ybq-U0-n7W">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="O7T-Mq-393"/>
+                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tGr-vS-S2o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0od-bE-PW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2020" y="-691"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vdl-hn-4Fe">
