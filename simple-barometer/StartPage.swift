@@ -10,9 +10,9 @@ import UIKit
 
 class StartPage : UIViewController {
     
+    
+    
     override func viewDidLoad() {
-        
-        self.view.backgroundColor = UIColor.systemMint;
         
     }
 }
