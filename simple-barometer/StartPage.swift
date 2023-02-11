@@ -35,17 +35,10 @@ class StartPage : UIViewController {
     @IBOutlet weak var bottomInformationView : UIView!
     @IBOutlet weak var bottomInformationLabel : UILabel!
 
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-            
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         API_Controller().getBlobForHome(home: self)
-
     }
     
     func updateCurrentConditions(updatedBlob : Blob) {

@@ -11,7 +11,8 @@ import UIKit
 class TodayViewController : UIViewController {
     
     override func viewDidLoad() {
-       
+        super.viewDidLoad()
+        
         self.title = "Today's Conditions"
     }
 }

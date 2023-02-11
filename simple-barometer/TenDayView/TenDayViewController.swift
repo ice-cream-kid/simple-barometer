@@ -11,7 +11,8 @@ import UIKit
 class TenDayViewController : UIViewController {
     
     override func viewDidLoad() {
-       
+        super.viewDidLoad()
+        
         self.title = "Next Ten Days"
     }
 }
