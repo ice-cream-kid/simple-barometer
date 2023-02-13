@@ -11,6 +11,7 @@ import UIKit
 class CurrentConditionsViewController : UIViewController {
 
     @IBOutlet weak var gaugeView : GaugeView!
+    var currentPressure : Double = 0.0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,19 +20,7 @@ class CurrentConditionsViewController : UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 1) {
-                self.gaugeView.value = 33
-            }
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            UIView.animate(withDuration: 1) {
-                self.gaugeView.value = 66
-            }
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            UIView.animate(withDuration: 1) {
-                self.gaugeView.value = 0
+                self.gaugeView.value = self.currentPressure
             }
         }
     }

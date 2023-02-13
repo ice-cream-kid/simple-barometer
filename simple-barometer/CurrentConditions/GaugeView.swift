@@ -9,7 +9,7 @@ import UIKit
 
 class GaugeView: UIView {
 
-    var outerBezelColor = UIColor.clear //(red: 0, green: 0.5, blue: 1, alpha: 1)
+    var outerBezelColor = UIColor.clear
     var outerBezelWidth: CGFloat = 10
 
     var innerBezelColor = UIColor.clear
@@ -18,7 +18,11 @@ class GaugeView: UIView {
     var insideColor = UIColor.clear
     
     var segmentWidth: CGFloat = 20
-    var segmentColors = [UIColor(red: 0.7, green: 0, blue: 0, alpha: 1), UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), UIColor(red: 0.7, green: 0, blue: 0, alpha: 1)]
+    var segmentColors = [UIColor.red,//(red: 0.7, green: 0, blue: 0, alpha: 1),
+                         UIColor.yellow,//(red: 0, green: 0.5, blue: 0, alpha: 1),
+                         UIColor.green,//(red: 0, green: 0.5, blue: 0, alpha: 1),
+                         UIColor.yellow,//(red: 0, green: 0.5, blue: 0, alpha: 1),
+                         UIColor.red]//(red: 0.7, green: 0, blue: 0, alpha: 1)]
     
     var totalAngle: CGFloat = 270
     var rotation: CGFloat = -135
@@ -32,26 +36,40 @@ class GaugeView: UIView {
     var minorTickLength: CGFloat = 20
     var minorTickCount = 3
     
-    var outerCenterDiscColor = UIColor(white: 0.9, alpha: 1)
+    var outerCenterDiscColor = UIColor.white //(white: 0.9, alpha: 1)
     var outerCenterDiscWidth: CGFloat = 35
-    var innerCenterDiscColor = UIColor(white: 0.7, alpha: 1)
+    var innerCenterDiscColor = UIColor.white //(white: 0.7, alpha: 1)
     var innerCenterDiscWidth: CGFloat = 25
     
-    var needleColor = UIColor(white: 0.7, alpha: 1)
-    var needleWidth: CGFloat = 4
+    var needleColor = UIColor.white //(white: 0.7, alpha: 1)
+    var needleWidth: CGFloat = 3
     let needle = UIView()
     
     let valueLabel = UILabel()
-    var valueFont = UIFont.systemFont(ofSize: 20)
-    var valueColor = UIColor.black
+    var valueFont = UIFont.systemFont(ofSize: 33)
+    var valueColor = UIColor.white
     
-    var value: Int = 0 {
+    var value: Double = 0.0 {
         didSet {
+        
             // update the value label to show the exact number
-            valueLabel.text = String(value)
+            valueLabel.text = String(format: "%.2f", value)
+            
+            var firstNumber = 0.0
+            
+            if (value <= 29.99) {
+                firstNumber = 0.0
+                
+            } else if (value > 29.99 && value < 31) {
+                firstNumber = 1.0
+            }
+            
+            value = value.truncatingRemainder(dividingBy: 1)
+            value = value + firstNumber
+            
 
             // figure out where the needle is, between 0 and 1
-            let needlePosition = CGFloat(value) / 100
+            let needlePosition = CGFloat(value) / 2
 
             // create a lerp from the start angle (rotation) through to the end angle (rotation + totalAngle)
             let lerpFrom = rotation
@@ -60,6 +78,10 @@ class GaugeView: UIView {
             // lerp from the start to the end position, based on the needle's position
             let needleRotation = lerpFrom + (lerpTo - lerpFrom) * needlePosition
             needle.transform = CGAffineTransform(rotationAngle: deg2rad(needleRotation))
+            
+            print(needlePosition)
+            print(lerpFrom)
+            print(lerpTo)
         }
     }
     
@@ -233,14 +255,13 @@ class GaugeView: UIView {
         addSubview(needle)
         
         valueLabel.font = valueFont
-        valueLabel.text = "100"
         valueLabel.textColor = valueColor
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(valueLabel)
 
         NSLayoutConstraint.activate([
             valueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -75)
         ])
     }
 

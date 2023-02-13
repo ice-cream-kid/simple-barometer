@@ -52,7 +52,6 @@ class Home : UIViewController {
         self.currentConditionsView.layer.cornerRadius = 7.0
         self.dayView.layer.cornerRadius = 7.0
         self.tenDayView.layer.cornerRadius = 7.0
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,22 +60,7 @@ class Home : UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//
-//        let test = GaugeView(frame: CGRect(x: self.currentConditionsGaugeContainerView.frame.origin.x, y: self.currentConditionsGaugeContainerView.frame.origin.y, width: self.currentConditionsGaugeContainerView.frame.self.height, height: self.currentConditionsGaugeContainerView.frame.self.height))
-//
-//        test.backgroundColor = .systemGreen
-//
-//
-//        self.currentConditionsGaugeContainerView.addSubview(test)
-//
-//        test.translatesAutoresizingMaskIntoConstraints = false
 
-//        test.topAnchor.constraint(equalTo: self.currentConditionsGaugeContainerView.topAnchor, constant: 0).isActive = true
-//        test.bottomAnchor.constraint(equalTo: self.currentConditionsGaugeContainerView.bottomAnchor, constant: 0).isActive = true
-//        test.leadingAnchor.constraint(equalTo: self.currentConditionsGaugeContainerView.leadingAnchor, constant: 0).isActive = true
-//        test.trailingAnchor.constraint(equalTo: self.currentConditionsGaugeContainerView.trailingAnchor, constant: 0).isActive = true
-        
-//        test.frame.size.width = self.currentConditionsGaugeContainerView.frame.size.width
     }
     
     func updateCurrentConditions(updatedBlob : Blob) {
@@ -86,6 +70,15 @@ class Home : UIViewController {
         
         DispatchQueue.main.async {
             self.currentPressureNumericLabel.text = String(format: "%.2f", mercuryValue)
+            self.currentPressureNumericLabel.isHidden = false
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination is CurrentConditionsViewController {
+            let vc = segue.destination as? CurrentConditionsViewController
+            vc?.currentPressure = self.currentPressure
         }
     }
     
