@@ -16,16 +16,16 @@ class CurrentConditionsViewController : UIViewController {
         self.title = "Current Conditions"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-           
-        let test = GaugeView(frame: CGRect(x: 40, y: 40, width: 256, height: 256))
+    func addGaugeViewToSelf() {
+        
+        let widthHeight = 400.0
+        
+        let practiceGauge = GaugeView(frame: CGRect(x:view.center.x - (widthHeight / 2), y: view.center.y - (widthHeight / 2), width: 400, height: 400))
+        practiceGauge.backgroundColor = .clear
 
-        test.backgroundColor = .clear
+        practiceGauge.translatesAutoresizingMaskIntoConstraints = false
 
-        self.view.addSubview(test)
-
-        test.translatesAutoresizingMaskIntoConstraints = false
-        test.center = self.view.center
+        view.addSubview(practiceGauge)
     }
+ 
 }
