@@ -1,5 +1,5 @@
 //
-//  StartPage.swift
+//  Home.swift
 //  simple-barometer
 //
 //  Created by Michael Johnson on 2/9/23.
@@ -8,20 +8,21 @@
 import Foundation
 import UIKit
 
-class StartPage : UIViewController {
+class Home : UIViewController {
     
     @IBOutlet weak var titleStackViewContainer : UIView!
     @IBOutlet weak var titleStackView : UIStackView!
     @IBOutlet weak var titleLabel : UILabel!
     @IBOutlet weak var subtitleLabel : UILabel!
     
-    @IBOutlet weak var startPagePanelsStackView : UIStackView!
+    @IBOutlet weak var homePanelsStackView : UIStackView!
     
     @IBOutlet weak var currentConditionsView : UIView!
     @IBOutlet weak var currentConditionsLabel : UILabel!
     @IBOutlet weak var currentConditionsButton : UIButton!
     
     @IBOutlet weak var currentPressureNumericLabel : UILabel!
+    @IBOutlet weak var currentConditionsGaugeContainerView: UIView!
     @IBOutlet weak var currentPressureUnitLabel : UILabel!
 
     @IBOutlet weak var dayView : UIView!
@@ -39,12 +40,24 @@ class StartPage : UIViewController {
         super.viewWillAppear(animated)
         
         API_Controller().getBlobForHome(home: self)
+        
+//        self.currentPressureNumericLabel.isHidden = true
     }
     
     func updateCurrentConditions(updatedBlob : Blob) {
         
+        var mercuryValue : Double = (updatedBlob.currentConditions.pressure / 33.864);
+        
+//        print(mercuryValue)
+        
         DispatchQueue.main.async {
-            self.currentPressureNumericLabel.text = updatedBlob.currentConditions.pressure.description
+            self.currentPressureUnitLabel.text = String(format: "%.2f inHg", mercuryValue)
         }
+        
+        
     }
+    
+    
+    
+    
 }

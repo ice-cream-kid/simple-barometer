@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Start Page-->
+        <!--Home-->
         <scene sceneID="jLY-xV-FGX">
             <objects>
-                <viewController id="uLS-gK-L9p" customClass="StartPage" customModule="simple_barometer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uLS-gK-L9p" customClass="Home" customModule="simple_barometer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yyN-P0-PSm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,6 +52,27 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKc-14-AR0">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="183"/>
                                         <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4qV-eB-dAc">
+                                                <rect key="frame" x="8" y="8" width="377" height="167"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Current Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-LZ-lUy">
+                                                        <rect key="frame" x="76.666666666666671" y="0.0" width="223.66666666666663" height="30.666666666666668"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-Rs-KKC">
+                                                        <rect key="frame" x="68.666666666666686" y="30.66666666666665" width="240" height="116.33333333333331"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="inHg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqE-hf-8qA">
+                                                        <rect key="frame" x="170" y="147" width="37.333333333333343" height="20"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajx-xg-Qhd">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="183"/>
                                                 <state key="normal" title="Button"/>
@@ -60,29 +81,6 @@
                                                     <segue destination="8Pz-IX-T43" kind="show" id="i4F-Aw-5Kp"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4qV-eB-dAc">
-                                                <rect key="frame" x="8" y="8" width="377" height="167"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Current Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-LZ-lUy">
-                                                        <rect key="frame" x="76.666666666666671" y="0.0" width="223.66666666666663" height="37"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="--.--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJ0-j4-LRI">
-                                                        <rect key="frame" x="113" y="37" width="151" height="106"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="75"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="inHg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqE-hf-8qA">
-                                                        <rect key="frame" x="170" y="143" width="37.333333333333343" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <constraints>
@@ -195,14 +193,14 @@
                         <outlet property="bottomInformationLabel" destination="aiT-m9-GZP" id="UxZ-6w-p0e"/>
                         <outlet property="bottomInformationView" destination="DVH-4q-0Qe" id="Onx-qh-swT"/>
                         <outlet property="currentConditionsButton" destination="ajx-xg-Qhd" id="JSz-rv-UGV"/>
+                        <outlet property="currentConditionsGaugeContainerView" destination="Swk-Rs-KKC" id="lek-CO-KlF"/>
                         <outlet property="currentConditionsLabel" destination="GG3-LZ-lUy" id="RVM-wx-Ghv"/>
                         <outlet property="currentConditionsView" destination="fKc-14-AR0" id="9JH-ph-sEe"/>
-                        <outlet property="currentPressureNumericLabel" destination="BJ0-j4-LRI" id="4se-Xh-Prh"/>
                         <outlet property="currentPressureUnitLabel" destination="MqE-hf-8qA" id="HyS-9f-1eH"/>
                         <outlet property="dayView" destination="dAQ-YV-uli" id="7Sh-ca-Qpf"/>
                         <outlet property="dayViewButton" destination="eyS-aL-1tp" id="Ryf-gl-KTg"/>
                         <outlet property="dayViewLabel" destination="cNt-eJ-gfy" id="waL-ud-d9M"/>
-                        <outlet property="startPagePanelsStackView" destination="0ud-VN-3Rt" id="dYn-43-41N"/>
+                        <outlet property="homePanelsStackView" destination="0ud-VN-3Rt" id="EEI-7L-Mfh"/>
                         <outlet property="subtitleLabel" destination="nvS-1n-Vm8" id="6QN-2o-pbx"/>
                         <outlet property="tenDayView" destination="rmf-Td-SHW" id="4Rv-ZC-6nd"/>
                         <outlet property="tenDayViewButton" destination="jeh-Wz-2sK" id="YEz-R3-luU"/>
@@ -215,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du2-Gh-E1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365.6488549618321" y="-704.22535211267609"/>
+            <point key="canvasLocation" x="1109" y="-704"/>
         </scene>
         <!--Current Conditions View Controller-->
         <scene sceneID="TyY-if-hkc">
@@ -247,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCA-5y-auu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="-320"/>
+            <point key="canvasLocation" x="2018" y="-342"/>
         </scene>
         <!--Today View Controller-->
         <scene sceneID="Qnn-tF-RcK">
@@ -263,7 +261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijo-GO-5Jw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2666" y="-689"/>
+            <point key="canvasLocation" x="2741" y="-704"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vdl-hn-4Fe">
@@ -281,7 +279,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvn-g4-fFz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.95419847328242" y="-704.22535211267609"/>
+            <point key="canvasLocation" x="445" y="-704"/>
         </scene>
     </scenes>
     <resources>

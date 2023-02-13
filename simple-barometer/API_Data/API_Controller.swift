@@ -8,10 +8,8 @@
 import Foundation
 
 class API_Controller {
-    
-//    var dataBlob : Blob?
-    
-    func getBlobForHome(home : StartPage) {
+        
+    func getBlobForHome(home : Home) {
                 
         guard let url = URL(string: "\(API_Strings().pressure40241)") else {
             print("invalid url")
@@ -31,27 +29,14 @@ class API_Controller {
         }.resume()
     }
     
-    func parseBlob(data : Data, home : StartPage) {
+    func parseBlob(data : Data, home : Home) {
 
         do {
             let blob = try JSONDecoder().decode(Blob.self, from: data)
-//            dataBlob = blob
-//            print(dataBlob?.currentConditions.pressure as Any)
-            
             home.updateCurrentConditions(updatedBlob: blob)
 
         } catch let parseError {
             print(" \n *** \n ", parseError)
         }
     }
-    
-//    func getCurrentPressure() -> Double {
-//        
-//        self.getBlob()
-//        
-//        
-//        
-////        return dataBlob?.currentConditions.pressure ?? 00.00
-//    }
-    
 }

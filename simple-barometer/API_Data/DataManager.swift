@@ -29,7 +29,6 @@ struct Blob : Codable {
         
         let datetime : String
         let pressure : Double
-        
     }
 }
     
