@@ -265,6 +265,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tGr-vS-S2o"/>
+                    <connections>
+                        <outlet property="gaugeView" destination="1x7-Jq-mhG" id="nK8-7O-JUP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0od-bE-PW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

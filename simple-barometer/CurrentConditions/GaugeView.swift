@@ -9,13 +9,13 @@ import UIKit
 
 class GaugeView: UIView {
 
-    var outerBezelColor = UIColor(red: 0, green: 0.5, blue: 1, alpha: 1)
+    var outerBezelColor = UIColor.clear //(red: 0, green: 0.5, blue: 1, alpha: 1)
     var outerBezelWidth: CGFloat = 10
 
-    var innerBezelColor = UIColor.white
+    var innerBezelColor = UIColor.clear
     var innerBezelWidth: CGFloat = 5
 
-    var insideColor = UIColor.white
+    var insideColor = UIColor.clear
     
     var segmentWidth: CGFloat = 20
     var segmentColors = [UIColor(red: 0.7, green: 0, blue: 0, alpha: 1), UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), UIColor(red: 0.7, green: 0, blue: 0, alpha: 1)]
@@ -44,6 +44,24 @@ class GaugeView: UIView {
     let valueLabel = UILabel()
     var valueFont = UIFont.systemFont(ofSize: 20)
     var valueColor = UIColor.black
+    
+    var value: Int = 0 {
+        didSet {
+            // update the value label to show the exact number
+            valueLabel.text = String(value)
+
+            // figure out where the needle is, between 0 and 1
+            let needlePosition = CGFloat(value) / 100
+
+            // create a lerp from the start angle (rotation) through to the end angle (rotation + totalAngle)
+            let lerpFrom = rotation
+            let lerpTo = rotation + totalAngle
+
+            // lerp from the start to the end position, based on the needle's position
+            let needleRotation = lerpFrom + (lerpTo - lerpFrom) * needlePosition
+            needle.transform = CGAffineTransform(rotationAngle: deg2rad(needleRotation))
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
