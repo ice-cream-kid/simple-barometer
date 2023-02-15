@@ -17,7 +17,9 @@ class GaugeView: UIView {
 
     var insideColor = UIColor.clear
     
+    var segmentThickness: CGFloat = 20
     var segmentWidth: CGFloat = 20
+
     var segmentColors = [UIColor.red,//(red: 0.7, green: 0, blue: 0, alpha: 1),
                          UIColor.yellow,//(red: 0, green: 0.5, blue: 0, alpha: 1),
                          UIColor.green,//(red: 0, green: 0.5, blue: 0, alpha: 1),
@@ -36,12 +38,12 @@ class GaugeView: UIView {
     var minorTickLength: CGFloat = 20
     var minorTickCount = 3
     
-    var outerCenterDiscColor = UIColor.white //(white: 0.9, alpha: 1)
+    var outerCenterDiscColor = UIColor.white
     var outerCenterDiscWidth: CGFloat = 35
-    var innerCenterDiscColor = UIColor.white //(white: 0.7, alpha: 1)
+    var innerCenterDiscColor = UIColor.white
     var innerCenterDiscWidth: CGFloat = 25
     
-    var needleColor = UIColor.white //(white: 0.7, alpha: 1)
+    var needleColor = UIColor.white
     var needleWidth: CGFloat = 3
     let needle = UIView()
     
@@ -52,22 +54,23 @@ class GaugeView: UIView {
     var value: Double = 0.0 {
         didSet {
         
+            valueLabel.alpha = 0.0
+            
             // update the value label to show the exact number
             valueLabel.text = String(format: "%.2f", value)
             
             var firstNumber = 0.0
-            
+
             if (value <= 29.99) {
                 firstNumber = 0.0
-                
+
             } else if (value > 29.99 && value < 31) {
                 firstNumber = 1.0
             }
-            
+
             value = value.truncatingRemainder(dividingBy: 1)
             value = value + firstNumber
             
-
             // figure out where the needle is, between 0 and 1
             let needlePosition = CGFloat(value) / 2
 
@@ -78,10 +81,7 @@ class GaugeView: UIView {
             // lerp from the start to the end position, based on the needle's position
             let needleRotation = lerpFrom + (lerpTo - lerpFrom) * needlePosition
             needle.transform = CGAffineTransform(rotationAngle: deg2rad(needleRotation))
-            
-            print(needlePosition)
-            print(lerpFrom)
-            print(lerpTo)
+            valueLabel.alpha = 1.0
         }
     }
     
@@ -118,6 +118,8 @@ class GaugeView: UIView {
         
         drawBackground(in: rect, context: ctx)
         drawSegments(in: rect, context: ctx)
+//        originalDrawSegments(in: rect, context: ctx)
+
         drawTicks(in: rect, context: ctx)
         drawCenterDisc(in: rect, context: ctx)
     }
@@ -125,43 +127,6 @@ class GaugeView: UIView {
     func deg2rad(_ number: CGFloat) -> CGFloat {
         
         return number * .pi / 180
-    }
-    
-    func drawSegments(in rect: CGRect, context ctx: CGContext) {
-        
-        // 1: Save the current drawing configuration
-        ctx.saveGState()
-
-        // 2: Move to the center of our drawing rectangle and rotate so that we're pointing at the start of the first segment
-        ctx.translateBy(x: rect.midX, y: rect.midY)
-        ctx.rotate(by: deg2rad(rotation) - (.pi / 2))
-
-        // 3: Set up the user's line width
-        ctx.setLineWidth(segmentWidth)
-
-        // 4: Calculate the size of each segment in the total gauge
-        let segmentAngle = deg2rad(totalAngle / CGFloat(segmentColors.count))
-
-        // 5: Calculate how wide the segment arcs should be
-        let segmentRadius = (((rect.width - segmentWidth) / 2) - outerBezelWidth) - innerBezelWidth
-
-        // 6: Draw each segment
-        for (index, segment) in segmentColors.enumerated() {
-            // figure out where the segment starts in our arc
-            let start = CGFloat(index) * segmentAngle
-
-            // activate its color
-            segment.set()
-
-            // add a path for the segment
-            ctx.addArc(center: .zero, radius: segmentRadius, startAngle: start, endAngle: start + segmentAngle, clockwise: false)
-
-            // and stroke it using the activated color
-            ctx.drawPath(using: .stroke)
-        }
-
-        // 7: Reset the graphics state
-        ctx.restoreGState()
     }
     
     func drawTicks(in rect: CGRect, context ctx: CGContext) {
@@ -173,7 +138,7 @@ class GaugeView: UIView {
 
         let segmentAngle = deg2rad(totalAngle / CGFloat(segmentColors.count))
 
-        let segmentRadius = (((rect.width - segmentWidth) / 2) - outerBezelWidth) - innerBezelWidth
+        let segmentRadius = (((rect.width - segmentThickness) / 2) - outerBezelWidth) - innerBezelWidth
 
         // save the graphics state where we've moved to the center and rotated towards the start of the first segment
         ctx.saveGState()
@@ -181,7 +146,7 @@ class GaugeView: UIView {
         // draw major ticks
         ctx.setLineWidth(majorTickWidth)
         majorTickColor.set()
-        let majorEnd = segmentRadius + (segmentWidth / 2)
+        let majorEnd = segmentRadius + (segmentThickness / 2)
         let majorStart = majorEnd - majorTickLength
         
         for _ in 0 ... segmentColors.count {
@@ -203,7 +168,7 @@ class GaugeView: UIView {
         
         let minorTickSize = segmentAngle / CGFloat(minorTickCount + 1)
         
-        let minorEnd = segmentRadius + (segmentWidth / 2)
+        let minorEnd = segmentRadius + (segmentThickness / 2)
         let minorStart = minorEnd - minorTickLength
         
         for _ in 0 ..< segmentColors.count {
@@ -263,6 +228,134 @@ class GaugeView: UIView {
             valueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -75)
         ])
+    }
+    
+    func getStartPointForIndex(index : Int) -> Double {
+        
+        switch index {
+            case 0:
+                return 0
+            case 1:
+            //start point of 0 plus size of 0
+                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))
+            case 2:
+                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))// 8/21
+            case 3:
+                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))//15/21
+            case 4:
+                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1)) //20/21
+            default:
+                return 0
+        }
+    }
+    
+    func getAngleForIndex(index : Int) -> Double {
+        
+        switch index {
+            case 0:
+                return (7/21) * 270
+            case 1:
+                return (1/21) * 270
+            case 2:
+                return (7/21) * 270
+            case 3:
+                return (5/21) * 270
+            case 4:
+                return (1/21) * 270
+            default:
+                return 0
+        }
+    }
+    
+    func drawSegments(in rect: CGRect, context ctx: CGContext) {
+
+        // 1: Save the current drawing configuration
+        ctx.saveGState()
+
+        // 2: Move to the center of our drawing rectangle and rotate so that we're pointing at the start of the first segment
+        ctx.translateBy(x: rect.midX, y: rect.midY)
+        ctx.rotate(by: deg2rad(rotation) - (.pi / 2)) // -135 --half of 270
+
+        // 3: Set up the user's line width
+        ctx.setLineWidth(segmentThickness)
+
+        // 4: Calculate the size of each segment in the total gauge
+//        let segmentAngle1 =  deg2rad(totalAngle / CGFloat(segmentColors.count))
+
+        // 5: Calculate how wide the segment arcs should be
+        let segmentRadius = (((rect.width - segmentThickness) / 2) - outerBezelWidth) - innerBezelWidth
+
+
+        // 6: Draw each segment
+        for (index, color) in segmentColors.enumerated() {
+            
+//            print("  angle for index = ", getAngleForIndex(index: index))
+
+            let segmentAngle = deg2rad(getAngleForIndex(index: index))
+            print("  segment angle   = ", (getAngleForIndex(index: index)))
+            print("  segment RAD     = ", segmentAngle)
+
+           
+            // figure out where the segment starts in our arc
+            let start = deg2rad(CGFloat(getStartPointForIndex(index: index)))
+//            start = deg2rad(start)
+            print("         start    = ",start)
+            print("  - ")
+
+            // activate its color
+            color.set()
+
+            // add a path for the segment
+            ctx.addArc(center: .zero, radius: segmentRadius, startAngle: start, endAngle: start + segmentAngle, clockwise: false)
+
+            // and stroke it using the activated color
+            ctx.drawPath(using: .stroke)
+        }
+
+        // 7: Reset the graphics state
+        ctx.restoreGState()
+    }
+    
+    func originalDrawSegments(in rect: CGRect, context ctx: CGContext) {
+
+        // 1: Save the current drawing configuration
+        ctx.saveGState()
+
+        // 2: Move to the center of our drawing rectangle and rotate so that we're pointing at the start of the first segment
+        ctx.translateBy(x: rect.midX, y: rect.midY)
+        ctx.rotate(by: deg2rad(rotation) - (.pi / 2))
+
+        // 3: Set up the user's line width
+        ctx.setLineWidth(segmentWidth)
+
+        // 4: Calculate the size of each segment in the total gauge
+        let segmentAngle = deg2rad(totalAngle / CGFloat(segmentColors.count))
+            print("segment angle = ", totalAngle / CGFloat(segmentColors.count))
+            print("segment angle RAD = ", segmentAngle)
+
+        // 5: Calculate how wide the segment arcs should be
+//        location out from center
+        let segmentRadius = (((rect.width - segmentWidth) / 2) - 100) - innerBezelWidth
+        print("Segment radius = ", segmentRadius)
+
+        // 6: Draw each segment
+        for (index, segment) in segmentColors.enumerated() {
+            // figure out where the segment starts in our arc
+            let start = CGFloat(index) * segmentAngle // this will have to change
+            print("start = ", start)
+
+            // activate its color
+            segment.set()
+
+            // add a path for the segment
+            ctx.addArc(center: .zero, radius: segmentRadius, startAngle: start, endAngle: start + segmentAngle, clockwise: false)
+
+            // and stroke it using the activated color
+            ctx.drawPath(using: .stroke)
+        }
+
+        // 7: Reset the graphics state
+        ctx.restoreGState()
     }
 
 }

@@ -18,10 +18,8 @@ class CurrentConditionsViewController : UIViewController {
         
         self.title = "Current Conditions"
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 1) {
-                self.gaugeView.value = self.currentPressure
-            }
+        UIView.animate(withDuration: 1) {
+            self.gaugeView.value = self.currentPressure
         }
     }
     
