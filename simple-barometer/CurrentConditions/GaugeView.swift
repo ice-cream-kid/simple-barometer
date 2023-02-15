@@ -230,19 +230,13 @@ class GaugeView: UIView {
     
     func getStartPointForIndex(index : Int) -> Double {
         
-        switch index {
-            case 0:
-                return 0
-            case 1:
-                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))
-            case 2:
-                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))// 8/21
-            case 3:
-                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))//15/21
-            case 4:
-                return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1)) //20/21
-            default:
-                return 0
+        if (index == 0) {
+            return 0.0
+            
+        } else {
+            
+            // new start point is last start point + last angle
+            return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))
         }
     }
     
