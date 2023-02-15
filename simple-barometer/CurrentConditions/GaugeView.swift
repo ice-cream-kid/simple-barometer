@@ -20,11 +20,11 @@ class GaugeView: UIView {
     var segmentThickness: CGFloat = 20
     var segmentWidth: CGFloat = 20
 
-    var segmentColors = [UIColor.red,//(red: 0.7, green: 0, blue: 0, alpha: 1),
-                         UIColor.yellow,//(red: 0, green: 0.5, blue: 0, alpha: 1),
-                         UIColor.green,//(red: 0, green: 0.5, blue: 0, alpha: 1),
-                         UIColor.yellow,//(red: 0, green: 0.5, blue: 0, alpha: 1),
-                         UIColor.red]//(red: 0.7, green: 0, blue: 0, alpha: 1)]
+    var segmentColors = [UIColor.red,
+                         UIColor.yellow,
+                         UIColor.green,
+                         UIColor.yellow,
+                         UIColor.red]
     
     var totalAngle: CGFloat = 270
     var rotation: CGFloat = -135
@@ -118,8 +118,6 @@ class GaugeView: UIView {
         
         drawBackground(in: rect, context: ctx)
         drawSegments(in: rect, context: ctx)
-//        originalDrawSegments(in: rect, context: ctx)
-
         drawTicks(in: rect, context: ctx)
         drawCenterDisc(in: rect, context: ctx)
     }
@@ -236,7 +234,6 @@ class GaugeView: UIView {
             case 0:
                 return 0
             case 1:
-            //start point of 0 plus size of 0
                 return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))
             case 2:
                 return (getStartPointForIndex(index: index - 1) + getAngleForIndex(index: index - 1))// 8/21
@@ -274,33 +271,21 @@ class GaugeView: UIView {
 
         // 2: Move to the center of our drawing rectangle and rotate so that we're pointing at the start of the first segment
         ctx.translateBy(x: rect.midX, y: rect.midY)
-        ctx.rotate(by: deg2rad(rotation) - (.pi / 2)) // -135 --half of 270
+        ctx.rotate(by: deg2rad(rotation) - (.pi / 2))
 
         // 3: Set up the user's line width
         ctx.setLineWidth(segmentThickness)
-
-        // 4: Calculate the size of each segment in the total gauge
-//        let segmentAngle1 =  deg2rad(totalAngle / CGFloat(segmentColors.count))
-
+        
         // 5: Calculate how wide the segment arcs should be
         let segmentRadius = (((rect.width - segmentThickness) / 2) - outerBezelWidth) - innerBezelWidth
-
 
         // 6: Draw each segment
         for (index, color) in segmentColors.enumerated() {
             
-//            print("  angle for index = ", getAngleForIndex(index: index))
-
             let segmentAngle = deg2rad(getAngleForIndex(index: index))
-            print("  segment angle   = ", (getAngleForIndex(index: index)))
-            print("  segment RAD     = ", segmentAngle)
 
-           
             // figure out where the segment starts in our arc
             let start = deg2rad(CGFloat(getStartPointForIndex(index: index)))
-//            start = deg2rad(start)
-            print("         start    = ",start)
-            print("  - ")
 
             // activate its color
             color.set()
@@ -330,19 +315,14 @@ class GaugeView: UIView {
 
         // 4: Calculate the size of each segment in the total gauge
         let segmentAngle = deg2rad(totalAngle / CGFloat(segmentColors.count))
-            print("segment angle = ", totalAngle / CGFloat(segmentColors.count))
-            print("segment angle RAD = ", segmentAngle)
 
         // 5: Calculate how wide the segment arcs should be
-//        location out from center
-        let segmentRadius = (((rect.width - segmentWidth) / 2) - 100) - innerBezelWidth
-        print("Segment radius = ", segmentRadius)
+        let segmentRadius = (((rect.width - segmentWidth) / 2) - outerBezelWidth) - innerBezelWidth
 
         // 6: Draw each segment
         for (index, segment) in segmentColors.enumerated() {
             // figure out where the segment starts in our arc
-            let start = CGFloat(index) * segmentAngle // this will have to change
-            print("start = ", start)
+            let start = CGFloat(index) * segmentAngle
 
             // activate its color
             segment.set()
@@ -357,5 +337,4 @@ class GaugeView: UIView {
         // 7: Reset the graphics state
         ctx.restoreGState()
     }
-
 }
