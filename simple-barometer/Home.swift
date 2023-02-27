@@ -43,12 +43,13 @@ class Home : UIViewController {
     @IBOutlet weak var bottomInformationLabel : UILabel!
 
     var currentPressure : Double = 0.0
+    public var localWeatherData : WeatherData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.currentPressureNumericLabel.isHidden = true
-        API_Controller().getBlobForHome(home: self)
+        API_Controller().getWeatherDataForHome(home: self)
 
         self.currentConditionsView.layer.cornerRadius = 7.0
         self.dayView.layer.cornerRadius = 7.0
@@ -56,21 +57,13 @@ class Home : UIViewController {
         
         dayViewButton.addTarget(self, action: #selector(pushTwoDayViewController), for: .touchUpInside)
         
-        // kick off 60 second timer to refresh?
+        // Need some timer for refresh
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-    }
-    
-    func updateCurrentConditions(updatedBlob : Blob) {
+    func updateCurrentConditions(weatherData : WeatherData) {
         
-        let mercuryValue : Double = (updatedBlob.currentConditions.pressure / 33.864);
+        localWeatherData = weatherData
+        let mercuryValue : Double = (weatherData.currentConditions.pressure / 33.864);
         self.currentPressure = mercuryValue
         
         DispatchQueue.main.async {
@@ -81,16 +74,17 @@ class Home : UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // push to current conditions
+    // Push to current conditions
         if segue.destination is CurrentConditionsViewController {
             let vc = segue.destination as? CurrentConditionsViewController
             vc?.currentPressure = self.currentPressure
         }
     }
 
-    // push dummy swiftUI view
+    // Push 2-day view
     @objc func pushTwoDayViewController() {
-        let TwoDaySwiftUIView = UIHostingController(rootView: TwoDaySwiftUIView(navigationController: self.navigationController))
+        let TwoDaySwiftUIView = UIHostingController(rootView: TwoDaySwiftUIView(navigationController: self.navigationController!, weatherData: self.localWeatherData!))
+            
         self.navigationController?.pushViewController(TwoDaySwiftUIView, animated: true)
     }
 

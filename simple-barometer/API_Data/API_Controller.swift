@@ -9,9 +9,9 @@ import Foundation
 
 class API_Controller {
         
-    func getBlobForHome(home : Home) {
+    func getWeatherDataForHome(home : Home) {
                 
-        guard let url = URL(string: "\(API_Strings().pressure40241)") else {
+        guard let url = URL(string: "\(API_Strings().fortyEightHour)") else {
             print("invalid url")
             return
         }
@@ -23,17 +23,17 @@ class API_Controller {
             guard let data = data else { print("Empty data"); return }
             
             if String(data: data, encoding: .utf8) != nil {
-                self.parseBlob(data: data, home: home)
+                self.parseWeatherData(data: data, home: home)
             }
             
         }.resume()
     }
     
-    func parseBlob(data : Data, home : Home) {
+    func parseWeatherData(data : Data, home : Home) {
 
         do {
-            let blob = try JSONDecoder().decode(Blob.self, from: data)
-            home.updateCurrentConditions(updatedBlob: blob)
+            let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
+            home.updateCurrentConditions(weatherData: weatherData)
 
         } catch let parseError {
             print(" \n *** \n ", parseError)

@@ -20,11 +20,11 @@ class GaugeView: UIView {
     var segmentThickness: CGFloat = 20
     var segmentWidth: CGFloat = 20
 
-    var segmentColors = [UIColor.red,
-                         UIColor.yellow,
-                         UIColor.green,
-                         UIColor.yellow,
-                         UIColor.red]
+    var segmentColors = [UIColor.systemRed,
+                         UIColor.systemYellow,
+                         UIColor.systemGreen,
+                         UIColor.systemYellow,
+                         UIColor.systemRed]
     
     let majorSegmentsCount = 2
     
@@ -170,6 +170,9 @@ class GaugeView: UIView {
         
         // 6: Draw each segment
         for (index, color) in segmentColors.enumerated() {
+//            let indexThickness = getRadiusThicknessForIndex(index: index)
+//            let adjustedSegmentThickness = (((rect.width - indexThickness) / 2) - outerBezelWidth) - innerBezelWidth
+
             
             let segmentAngle = deg2rad(getAngleForIndex(index: index))
             // figure out where the segment starts in our arc
@@ -386,6 +389,24 @@ class GaugeView: UIView {
                 return (1/20) * 270
             default:
                 return 0
+        }
+    }
+    
+    func getRadiusThicknessForIndex(index : Int) -> Double {
+        
+        switch index {
+            case 0:
+                return 20
+            case 1:
+                return 30
+            case 2:
+                return 40
+            case 3:
+                return 30
+            case 4:
+                return 20
+            default:
+                return 20
         }
     }
 }
