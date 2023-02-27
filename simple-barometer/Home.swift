@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class Home : UIViewController {
     
@@ -52,6 +53,10 @@ class Home : UIViewController {
         self.currentConditionsView.layer.cornerRadius = 7.0
         self.dayView.layer.cornerRadius = 7.0
         self.tenDayView.layer.cornerRadius = 7.0
+        
+        dayViewButton.addTarget(self, action: #selector(pushTwoDayViewController), for: .touchUpInside)
+        
+        // kick off 60 second timer to refresh?
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,10 +81,18 @@ class Home : UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // push to current conditions
         if segue.destination is CurrentConditionsViewController {
             let vc = segue.destination as? CurrentConditionsViewController
             vc?.currentPressure = self.currentPressure
         }
     }
+
+    // push dummy swiftUI view
+    @objc func pushTwoDayViewController() {
+        let TwoDaySwiftUIView = UIHostingController(rootView: TwoDaySwiftUIView(navigationController: self.navigationController))
+        self.navigationController?.pushViewController(TwoDaySwiftUIView, animated: true)
+    }
+
     
 }

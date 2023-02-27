@@ -56,16 +56,16 @@
                                                 <rect key="frame" x="8" y="8" width="377" height="185.66666666666666"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Current Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-LZ-lUy">
-                                                        <rect key="frame" x="76.666666666666671" y="0.0" width="223.66666666666663" height="31.666666666666668"/>
+                                                        <rect key="frame" x="76.666666666666671" y="0.0" width="223.66666666666663" height="39.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-Rs-KKC">
-                                                        <rect key="frame" x="68.666666666666686" y="31.666666666666657" width="240" height="133.33333333333334"/>
+                                                        <rect key="frame" x="68.666666666666686" y="39.333333333333321" width="240" height="120.66666666666669"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29.87" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2M6-RI-XMF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="133.33333333333334"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="120.66666666666667"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="70"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="inHg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqE-hf-8qA">
-                                                        <rect key="frame" x="170" y="164.99999999999997" width="37.333333333333343" height="20.666666666666657"/>
+                                                        <rect key="frame" x="170" y="159.99999999999997" width="37.333333333333343" height="25.666666666666657"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -125,9 +125,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="201.33333333333334"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
-                                                <connections>
-                                                    <segue destination="iCD-8Y-iar" kind="show" id="juo-2X-HAL"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemTealColor"/>
@@ -248,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1x7-Jq-mhG" customClass="GaugeView" customModule="simple_barometer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="229.66666666666663" width="393" height="393"/>
+                                <rect key="frame" x="0.0" y="229.66666666666663" width="393" height="393.00000000000011"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="393" id="A9k-nL-xI0"/>

@@ -15,6 +15,8 @@
 		894F13892995848B00CF2A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894F13872995848B00CF2A46 /* LaunchScreen.storyboard */; };
 		894F139129958E7100CF2A46 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F139029958E7100CF2A46 /* Home.swift */; };
 		894F139429968CF500CF2A46 /* CurrentConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F139329968CF500CF2A46 /* CurrentConditionsViewController.swift */; };
+		8960419929ACF2D20087613F /* TwoDaySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960419829ACF2D20087613F /* TwoDaySwiftUIView.swift */; };
+		89E6BACE29A7C13D008C82F8 /* SwiftUIGaugePractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E6BACD29A7C13D008C82F8 /* SwiftUIGaugePractice.swift */; };
 		89FE18762996AB1200742867 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FE18752996AB1200742867 /* TodayViewController.swift */; };
 		89FE18782996AB1E00742867 /* TenDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FE18772996AB1E00742867 /* TenDayViewController.swift */; };
 		89FE187B2996D28800742867 /* API_Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FE187A2996D28800742867 /* API_Controller.swift */; };
@@ -34,6 +36,8 @@
 		894F138A2995848B00CF2A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		894F139029958E7100CF2A46 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		894F139329968CF500CF2A46 /* CurrentConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConditionsViewController.swift; sourceTree = "<group>"; };
+		8960419829ACF2D20087613F /* TwoDaySwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDaySwiftUIView.swift; sourceTree = "<group>"; };
+		89E6BACD29A7C13D008C82F8 /* SwiftUIGaugePractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGaugePractice.swift; sourceTree = "<group>"; };
 		89FE18752996AB1200742867 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		89FE18772996AB1E00742867 /* TenDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenDayViewController.swift; sourceTree = "<group>"; };
 		89FE187A2996D28800742867 /* API_Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Controller.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 				894F13852995848B00CF2A46 /* Assets.xcassets */,
 				894F13872995848B00CF2A46 /* LaunchScreen.storyboard */,
 				894F138A2995848B00CF2A46 /* Info.plist */,
+				89E6BACD29A7C13D008C82F8 /* SwiftUIGaugePractice.swift */,
 				894F139029958E7100CF2A46 /* Home.swift */,
 				89FE18792996D25000742867 /* API_Data */,
 				894F139229968CD500CF2A46 /* CurrentConditions */,
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				89FE18752996AB1200742867 /* TodayViewController.swift */,
+				8960419829ACF2D20087613F /* TwoDaySwiftUIView.swift */,
 			);
 			path = DayView;
 			sourceTree = "<group>";
@@ -196,8 +202,10 @@
 			files = (
 				894F13812995848A00CF2A46 /* ViewController.swift in Sources */,
 				894F139129958E7100CF2A46 /* Home.swift in Sources */,
+				89E6BACE29A7C13D008C82F8 /* SwiftUIGaugePractice.swift in Sources */,
 				89FE18762996AB1200742867 /* TodayViewController.swift in Sources */,
 				894F139429968CF500CF2A46 /* CurrentConditionsViewController.swift in Sources */,
+				8960419929ACF2D20087613F /* TwoDaySwiftUIView.swift in Sources */,
 				89FE187B2996D28800742867 /* API_Controller.swift in Sources */,
 				894F137D2995848A00CF2A46 /* AppDelegate.swift in Sources */,
 				89FE18782996AB1E00742867 /* TenDayViewController.swift in Sources */,
