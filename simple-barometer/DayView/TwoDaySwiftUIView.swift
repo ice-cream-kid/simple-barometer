@@ -26,6 +26,8 @@ struct TwoDaySwiftUIView: View {
                         x: .value("Time", hour.dateTime),
                         y: .value("Pressure", hour.pressure)
                     )
+                    .interpolationMethod(.catmullRom)
+
                 }
             }
             .frame(height: 300)
