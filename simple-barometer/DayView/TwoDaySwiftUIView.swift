@@ -12,51 +12,13 @@ struct TwoDaySwiftUIView: View {
 
     weak var navigationController: UINavigationController?
     @State var localWeatherData: WeatherData!
-//    @Binding var pressureHours : [PressureHour]
     
     init(navigationController : UINavigationController, weatherData : WeatherData) {
 
         _localWeatherData = State(initialValue: weatherData)
-//        _pressureHours = State(initialValue:[])
-        
-//        convertDataToDataEyeRoll()
     }
     
     var body: some View {
-        
-        
-//            VStack {
-//
-//                Chart {
-//                    ForEach(londonWeatherData) { item in
-//                        LineMark(
-//                            x: .value("Month", item.date),
-//                            y: .value("Temp", item.temperature)
-//                        )
-//                    }
-//                }
-//                .frame(height: 300)
-//
-//            }
-//        }
-    
-//        var body: some View {
-//                VStack {
-//                    Chart {
-//                        ForEach(0..<localWeatherData.days.count) { Day in
-//                            ForEach(0..<Day.hours.count) { Hour in
-//                                LineMark(
-//                                    x: .value("Date", Hour.datetime),
-//                                    y: .value("Press", Hour.pressure)
-//                                )
-//
-//                            }
-//                        }
-//                    }
-//                    .frame(height: 300)
-//                }
-//            }
-        
         let pressureHours = convertDataToDataEyeRoll()
         
         VStack {
@@ -80,17 +42,10 @@ struct TwoDaySwiftUIView: View {
         init(dateString: String, pressure: Double) {
             self.dateString = dateString
             self.pressure = pressure
-//            self.id = UUID()
         }
         
     }
     
-//    let pressureHours2
-//    print(dummyArray)
-    //        self.pressureHours = dummyArray
-    //        print(self.pressureHours)
-            
-        
     func convertDataToDataEyeRoll() -> [PressureHour] {
         
         var dummyArray : [PressureHour] = []
@@ -102,10 +57,7 @@ struct TwoDaySwiftUIView: View {
                 
             }
         }
-//        self.pressureHours = dummyArray
-//        print(self.pressureHours)
-
-
+        
         return dummyArray
     }
 }
@@ -115,6 +67,40 @@ struct TwoDaySwiftUIView: View {
 ////        TwoDaySwiftUIView()
 //    }
 //}
+
+
+//            VStack {
+//
+//                Chart {
+//                    ForEach(londonWeatherData) { item in
+//                        LineMark(
+//                            x: .value("Month", item.date),
+//                            y: .value("Temp", item.temperature)
+//                        )
+//                    }
+//                }
+//                .frame(height: 300)
+//
+//            }
+//        }
+
+//        var body: some View {
+//                VStack {
+//                    Chart {
+//                        ForEach(0..<localWeatherData.days.count) { Day in
+//                            ForEach(0..<Day.hours.count) { Hour in
+//                                LineMark(
+//                                    x: .value("Date", Hour.datetime),
+//                                    y: .value("Press", Hour.pressure)
+//                                )
+//
+//                            }
+//                        }
+//                    }
+//                    .frame(height: 300)
+//                }
+//            }
+
 
 struct WeatherDataExample: Identifiable {
     let id = UUID()
