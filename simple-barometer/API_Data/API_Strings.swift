@@ -13,7 +13,7 @@ class API_Strings {
     
     // interploate last 24 and
     
-    let fortyEightHour : String = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40241/2023-02-26/2023-02-27?unitGroup=us&elements=datetime%2Cpressure&include=days%2Chours%2Ccurrent%2Cobs%2Cfcst&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json"
+    let fortyEightHour : String = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40241?unitGroup=us&elements=datetime%2Cpressure&include=hours%2Ccurrent&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json"
     
     // figure interpolate last 7 and next 7
     

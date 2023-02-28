@@ -9,44 +9,36 @@ import SwiftUI
 import Charts
 
 struct TwoDaySwiftUIView: View {
-    
-//    init() {
-//        convertDataToDataEyeRoll()
-//    }
-   
+
     weak var navigationController: UINavigationController?
     @State var localWeatherData: WeatherData!
-
+//    @Binding var pressureHours : [PressureHour]
     
     init(navigationController : UINavigationController, weatherData : WeatherData) {
-        
-        // these vars must be passed in on button click -> push
-//        weak var navigationController: UINavigationController?
-//        var localWeatherData: WeatherData!
-        
-        _localWeatherData = State(initialValue: weatherData)
-        convertDataToDataEyeRoll()
 
+        _localWeatherData = State(initialValue: weatherData)
+//        _pressureHours = State(initialValue:[])
+        
+//        convertDataToDataEyeRoll()
     }
-//    // these vars must be passed in on button click -> push
     
     var body: some View {
         
         
-            VStack {
-                
-                Chart {
-                    ForEach(londonWeatherData) { item in
-                        LineMark(
-                            x: .value("Month", item.date),
-                            y: .value("Temp", item.temperature)
-                        )
-                    }
-                }
-                .frame(height: 300)
-                
-            }
-        }
+//            VStack {
+//
+//                Chart {
+//                    ForEach(londonWeatherData) { item in
+//                        LineMark(
+//                            x: .value("Month", item.date),
+//                            y: .value("Temp", item.temperature)
+//                        )
+//                    }
+//                }
+//                .frame(height: 300)
+//
+//            }
+//        }
     
 //        var body: some View {
 //                VStack {
@@ -64,32 +56,58 @@ struct TwoDaySwiftUIView: View {
 //                    .frame(height: 300)
 //                }
 //            }
+        
+        let pressureHours = convertDataToDataEyeRoll()
+        
+        VStack {
+            Chart {
+                ForEach(pressureHours) { hour in
+                    LineMark(
+                        x: .value("Time", hour.dateString),
+                        y: .value("Press", hour.pressure)
+                    )
+                }
+            }
+            .frame(height: 300)
+        }
+    }
     
-    struct PressureHour { //}: Identifiable {
-//        let id = UUID()
-//        let date : Date
+    struct PressureHour: Identifiable {
+        let id = UUID()
         let dateString : String
         let pressure : Double
 
         init(dateString: String, pressure: Double) {
             self.dateString = dateString
             self.pressure = pressure
-//            self.date = ISO8601DateFormatter().date(from: dateString)!
+//            self.id = UUID()
         }
         
     }
     
-    func convertDataToDataEyeRoll() {
-
+//    let pressureHours2
+//    print(dummyArray)
+    //        self.pressureHours = dummyArray
+    //        print(self.pressureHours)
+            
+        
+    func convertDataToDataEyeRoll() -> [PressureHour] {
+        
+        var dummyArray : [PressureHour] = []
+        
         for day in localWeatherData.days {
             for hour in day.hours {
-                var ph = PressureHour(dateString: hour.datetime, pressure: hour.pressure)
-                print(ph)
+                let ph = PressureHour(dateString: hour.datetime, pressure: hour.pressure)
+                dummyArray.append(ph)
+                
             }
         }
+//        self.pressureHours = dummyArray
+//        print(self.pressureHours)
+
+
+        return dummyArray
     }
-    
-    
 }
 
 //struct TwoDaySwiftUIView_Previews: PreviewProvider {
@@ -97,11 +115,6 @@ struct TwoDaySwiftUIView: View {
 ////        TwoDaySwiftUIView()
 //    }
 //}
-
-
-
-
-
 
 struct WeatherDataExample: Identifiable {
     let id = UUID()
@@ -126,10 +139,4 @@ let londonWeatherData = [WeatherDataExample(year: 2021, month: 7, day: 1, temper
                         WeatherDataExample(year: 2022, month: 4, day: 1, temperature: 11.0),
                         WeatherDataExample(year: 2022, month: 5, day: 1, temperature: 15.0),
                         WeatherDataExample(year: 2022, month: 6, day: 1, temperature: 18.0)]
-//
-//let weatherPairs =
 
-//var unparsedWeatherData : WeatherData = Home.localWeatherData!
-
-
-//let fortyEightHours = [WeatherData]
