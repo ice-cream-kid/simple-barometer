@@ -27,7 +27,6 @@ struct TwoDaySwiftUIView: View {
                         y: .value("Pressure", hour.pressure)
                     )
                     .interpolationMethod(.catmullRom)
-
                 }
             }
             .frame(height: 300)
@@ -45,28 +44,27 @@ struct TwoDaySwiftUIView: View {
             self.dateTimeString = dateTimeString
             self.pressure = (pressure / 33.864)
             
-            let isoFormatter = DateFormatter()
-            isoFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
-//            isoFormatter.locale = Locale(identifier: "en_US_POSIX")
-//            isoFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-            self.dateTime = isoFormatter.date(from: dateTimeString)!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
+            self.dateTime = dateFormatter.date(from: dateTimeString)!
+// locale specific to user
         }
         
     }
     
     func convertDataToDataEyeRoll() -> [PressureHour] {
         
-        var dummyArray : [PressureHour] = []
+        var pressureHoursToGraph : [PressureHour] = []
         
         for day in localWeatherData.days {
             for hour in day.hours {
-                var dateTimeString = day.datetime.appending("-").appending(hour.datetime)
+                let dateTimeString = day.datetime.appending("-").appending(hour.datetime)
                 let ph = PressureHour(dateTimeString: dateTimeString, pressure: hour.pressure)
-                dummyArray.append(ph)
+                pressureHoursToGraph.append(ph)
             }
         }
         
-        return dummyArray
+        return pressureHoursToGraph
     }
 }
 

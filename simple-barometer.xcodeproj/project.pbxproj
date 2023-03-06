@@ -123,8 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				89FE187A2996D28800742867 /* API_Controller.swift */,
-				89FE187C2996DA9C00742867 /* WeatherData.swift */,
 				89FE187E2996E8A300742867 /* API_Strings.swift */,
+				89FE187C2996DA9C00742867 /* WeatherData.swift */,
 			);
 			path = API_Data;
 			sourceTree = "<group>";

@@ -11,7 +11,7 @@ class API_Controller {
         
     func getWeatherDataForHome(home : Home) {
                 
-        guard let url = URL(string: "\(API_Strings().fortyEightHour)") else {
+        guard let url = URL(string: "\(API_Strings().get48HourString())") else {
             print("invalid url")
             return
         }
@@ -28,7 +28,6 @@ class API_Controller {
             
         }.resume()
     }
-//            "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40241?unitGroup=us&elements=datetime%2Cpressure&include=hours%2Ccurrent&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json
     
     func parseWeatherData(data : Data, home : Home) {
 
