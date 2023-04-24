@@ -29,8 +29,26 @@ struct TwoDaySwiftUIView: View {
             
             Spacer()
             
-    //line mark
-            GroupBox( "36-Hour View") {
+    // 3-day line mark
+            GroupBox( "3-Day View") {
+                
+                Chart {
+                    ForEach(convertDataToDataEyeRoll()) { hour in
+                        LineMark(
+                            x: .value("Time", hour.dateTime),
+                            y: .value("Pressure", hour.pressure)
+                        )
+                        .interpolationMethod(.catmullRom)
+                        //lost current, highest current.
+//                        .chartYScale(domain: [0, 100])
+                    }
+                }
+                .chartYScale(domain: .automatic(includesZero: false))
+            }
+            .padding()
+            
+    // 10-day line mark
+            GroupBox( "Last 1, Next 7 Day View") {
                 
                 Chart {
                     ForEach(convertDataToDataEyeRoll()) { hour in
@@ -41,12 +59,9 @@ struct TwoDaySwiftUIView: View {
                         .interpolationMethod(.catmullRom)
                     }
                 }
-                .frame(height: 300)
                 .chartYScale(domain: .automatic(includesZero: false))
             }
             .padding()
-            Spacer()
-
         }
     }
     
