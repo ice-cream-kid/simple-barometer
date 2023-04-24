@@ -55,7 +55,6 @@ struct TwoDaySwiftUIView: View {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
             self.dateTime = dateFormatter.date(from: dateTimeString)!
-// locale specific to user
         }
         
     }
