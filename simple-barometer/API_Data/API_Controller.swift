@@ -11,7 +11,7 @@ class API_Controller {
         
     func getWeatherDataForHome(home : Home) {
                 
-        guard let url = URL(string: "\(API_Strings().get48HourString())") else {
+        guard let url = URL(string: "\(API_Strings().get8DayString())") else {
             print("invalid url")
             return
         }

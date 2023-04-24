@@ -33,7 +33,7 @@ struct TwoDaySwiftUIView: View {
             GroupBox( "3-Day View") {
                 
                 Chart {
-                    ForEach(convertDataToDataEyeRoll()) { hour in
+                    ForEach(threeDayChartableData()) { hour in
                         LineMark(
                             x: .value("Time", hour.dateTime),
                             y: .value("Pressure", hour.pressure)
@@ -51,7 +51,7 @@ struct TwoDaySwiftUIView: View {
             GroupBox( "Last 1, Next 7 Day View") {
                 
                 Chart {
-                    ForEach(convertDataToDataEyeRoll()) { hour in
+                    ForEach(eightDayChartableData()) { hour in
                         LineMark(
                             x: .value("Time", hour.dateTime),
                             y: .value("Pressure", hour.pressure)
@@ -79,10 +79,38 @@ struct TwoDaySwiftUIView: View {
             dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
             self.dateTime = dateFormatter.date(from: dateTimeString)!
         }
-        
     }
     
-    func convertDataToDataEyeRoll() -> [PressureHour] {
+    func threeDayChartableData() -> [PressureHour] {
+        
+        var pressureHoursToGraph : [PressureHour] = []
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        for day in localWeatherData.days {
+                        
+            let dayDate = dateFormatter.date(from: day.datetime)!
+            
+            let today = Calendar.current.startOfDay(for: Date())
+
+            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+            let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+                        
+            if (dayDate == yesterday || dayDate == Date() || dayDate == tomorrow) {
+                
+                for hour in day.hours {
+                    let dateTimeString = day.datetime.appending("-").appending(hour.datetime)
+                    let ph = PressureHour(dateTimeString: dateTimeString, pressure: hour.pressure)
+                    pressureHoursToGraph.append(ph)
+                }
+            }
+        }
+        
+        return pressureHoursToGraph
+    }
+    
+    func eightDayChartableData() -> [PressureHour] {
         
         var pressureHoursToGraph : [PressureHour] = []
         
@@ -96,69 +124,8 @@ struct TwoDaySwiftUIView: View {
         
         return pressureHoursToGraph
     }
+    
+    
 }
 
-//struct TwoDaySwiftUIView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        TwoDaySwiftUIView()
-//    }
-//}
-
-
-//            VStack {
-//
-//                Chart {
-//                    ForEach(londonWeatherData) { item in
-//                        LineMark(
-//                            x: .value("Month", item.date),
-//                            y: .value("Temp", item.temperature)
-//                        )
-//                    }
-//                }
-//                .frame(height: 300)
-//
-//            }
-//        }
-
-//        var body: some View {
-//                VStack {
-//                    Chart {
-//                        ForEach(0..<localWeatherData.days.count) { Day in
-//                            ForEach(0..<Day.hours.count) { Hour in
-//                                LineMark(
-//                                    x: .value("Date", Hour.datetime),
-//                                    y: .value("Press", Hour.pressure)
-//                                )
-//
-//                            }
-//                        }
-//                    }
-//                    .frame(height: 300)
-//                }
-//            }
-
-
-//struct WeatherDataExample: Identifiable {
-//    let id = UUID()
-//    let date: Date
-//    let temperature: Double
-//
-//    init(year: Int, month: Int, day: Int, temperature: Double) {
-//        self.date = Calendar.current.date(from: .init(year: year, month: month, day: day)) ?? Date()
-//        self.temperature = temperature
-//    }
-//}
-//
-//let londonWeatherData = [WeatherDataExample(year: 2021, month: 7, day: 1, temperature: 19.0),
-//                        WeatherDataExample(year: 2021, month: 8, day: 1, temperature: 17.0),
-//                        WeatherDataExample(year: 2021, month: 9, day: 1, temperature: 17.0),
-//                        WeatherDataExample(year: 2021, month: 10, day: 1, temperature: 13.0),
-//                        WeatherDataExample(year: 2021, month: 11, day: 1, temperature: 8.0),
-//                        WeatherDataExample(year: 2021, month: 12, day: 1, temperature: 8.0),
-//                        WeatherDataExample(year: 2022, month: 1, day: 1, temperature: 5.0),
-//                        WeatherDataExample(year: 2022, month: 2, day: 1, temperature: 8.0),
-//                        WeatherDataExample(year: 2022, month: 3, day: 1, temperature: 9.0),
-//                        WeatherDataExample(year: 2022, month: 4, day: 1, temperature: 11.0),
-//                        WeatherDataExample(year: 2022, month: 5, day: 1, temperature: 15.0),
-//                        WeatherDataExample(year: 2022, month: 6, day: 1, temperature: 18.0)]
 
