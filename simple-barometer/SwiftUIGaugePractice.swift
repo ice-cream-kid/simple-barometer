@@ -8,37 +8,28 @@
 import SwiftUI
 import Charts
 
-//struct SwiftUIView: View {
-//
-//    weak var navigationController: UINavigationController?
+struct LabeledGauge: View {
+    @State private var current = 29.9
+    @State private var minValue = 29.0
+    @State private var maxValue = 31.0
 
-    struct LabeledGauge: View {
-        @State private var current = 29.9
-        @State private var minValue = 29.0
-        @State private var maxValue = 31.0
-
-        var body: some View {
-            ZStack {
-                Gauge(value: current, in: minValue...maxValue) {
-                    Text("BPM")
-                } currentValueLabel: {
-                    Text("\(current, specifier: "%.2f")")
-                } minimumValueLabel: {
-                    Text("\(minValue, specifier: "%.2f")")
-                } maximumValueLabel: {
-                    Text("\(maxValue, specifier: "%.2f")")
-                }
-                
-                .gaugeStyle(.accessoryCircular)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-                
+    var body: some View {
+        ZStack {
+            Gauge(value: current, in: minValue...maxValue) {
+                Text("BPM")
+            } currentValueLabel: {
+                Text("\(current, specifier: "%.2f")")
+            } minimumValueLabel: {
+                Text("\(minValue, specifier: "%.2f")")
+            } maximumValueLabel: {
+                Text("\(maxValue, specifier: "%.2f")")
             }
-//            .frame(width: 300, height: 300)
             
-            .background(Color.pink)
-
+            .gaugeStyle(.accessoryCircular)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .background(Color.pink)
+    }
 }
 
 struct StyledGauge: View {
