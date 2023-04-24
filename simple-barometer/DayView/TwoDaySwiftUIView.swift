@@ -27,18 +27,26 @@ struct TwoDaySwiftUIView: View {
                 .fontWeight(.bold)
                 .foregroundColor(Color.cyan)
             
+            Spacer()
+            
     //line mark
-            Chart {
-                ForEach(convertDataToDataEyeRoll()) { hour in
-                    LineMark(
-                        x: .value("Time", hour.dateTime),
-                        y: .value("Pressure", hour.pressure)
-                    )
-                    .interpolationMethod(.catmullRom)
+            GroupBox( "36-Hour View") {
+                
+                Chart {
+                    ForEach(convertDataToDataEyeRoll()) { hour in
+                        LineMark(
+                            x: .value("Time", hour.dateTime),
+                            y: .value("Pressure", hour.pressure)
+                        )
+                        .interpolationMethod(.catmullRom)
+                    }
                 }
+                .frame(height: 300)
+                .chartYScale(domain: .automatic(includesZero: false))
             }
-            .frame(height: 300)
-            .chartYScale(domain: .automatic(includesZero: false))
+            .padding()
+            Spacer()
+
         }
     }
     

@@ -8,21 +8,25 @@
 import Foundation
     
 struct WeatherData : Codable {
+   
     let days : [Day]
     let currentConditions : CurrentConditions
     
     struct Day : Codable {
+       
         let datetime : String
         let pressure : Double
         let hours : [Hour]
         
         struct Hour : Codable {
+           
             let datetime : String
             let pressure : Double
         }
     }
     
     struct CurrentConditions : Codable {
+        
         let datetime : String
         let pressure : Double
     }
