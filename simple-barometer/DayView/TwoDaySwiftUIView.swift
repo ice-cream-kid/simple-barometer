@@ -20,6 +20,14 @@ struct TwoDaySwiftUIView: View {
     var body: some View {
         
         VStack {
+    
+    //top panel
+            Text("30.24")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(Color.cyan)
+            
+    //line mark
             Chart {
                 ForEach(convertDataToDataEyeRoll()) { hour in
                     LineMark(
