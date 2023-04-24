@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class API_Strings {
     
@@ -26,7 +27,19 @@ class API_Strings {
         let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
         ydayString = dateFormatter.string(from:yesterday)
         
-        return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40241/\(ydayString)/\(todayString)?unitGroup=us&elements=datetime%2Cpressure&include=hours%2Ccurrent&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json"
+        var zip = "40241"
+        
+        // Make location global I think
+        
+        LocationManager.shared.getUserLocation { location in
+            zip = location
+            
+            // 40241 = Latitude: 38.302310, Longitude: -85.584506
+            print(location)
+        }
+        
+        
+        return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/\(zip)/\(ydayString)/\(todayString)?unitGroup=us&elements=datetime%2Cpressure&include=hours%2Ccurrent&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json"
     }
     
     let pastAndFutureDays : String = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40241/2023-02-18/2023-03-07?unitGroup=us&elements=datetime%2Cpressure&include=days%2Chours%2Ccurrent%2Cobs%2Cfcst&key=DYZHXUK8W6YCGKMARDCELVA3W&contentType=json"
