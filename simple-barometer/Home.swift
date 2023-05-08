@@ -63,7 +63,7 @@ class Home : UIViewController {
     func updateCurrentConditions(weatherData : WeatherData) {
         
         localWeatherData = weatherData
-        let mercuryValue : Double = (weatherData.currentConditions.pressure / 33.864);
+        let mercuryValue  = (weatherData.currentConditions.pressure / 33.864);
         self.currentPressure = mercuryValue
         
         DispatchQueue.main.async {
@@ -83,9 +83,16 @@ class Home : UIViewController {
 
     // Push 2-day view
     @objc func pushTwoDayViewController() {
-        let TwoDaySwiftUIView = UIHostingController(rootView: TwoDaySwiftUIView(navigationController: self.navigationController!, weatherData: self.localWeatherData!))
+        
+        if (self.localWeatherData != nil) {
             
-        self.navigationController?.pushViewController(TwoDaySwiftUIView, animated: true)
+            let TwoDaySwiftUIView = UIHostingController(rootView: TwoDaySwiftUIView(navigationController: self.navigationController!, weatherData: self.localWeatherData!))
+            
+            self.navigationController?.pushViewController(TwoDaySwiftUIView, animated: true)
+            
+        } else {
+            API_Controller().getWeatherDataForHome(home: self)
+        }
     }
 
     

@@ -18,19 +18,19 @@ struct TwoDaySwiftUIView: View {
     }
     
     var body: some View {
-        
+
         VStack {
     
     //top panel
-            Text("30.24")
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(Color.cyan)
             
-            Spacer()
+            GroupBox("Current Conditions") {
+
+            }
+            .padding()
+    
             
     // 3-day line mark
-            GroupBox( "3-Day View") {
+            GroupBox("3-Day View") {
                 
                 Chart {
                     ForEach(threeDayChartableData()) { hour in
@@ -39,7 +39,7 @@ struct TwoDaySwiftUIView: View {
                             y: .value("Pressure", hour.pressure)
                         )
                         .interpolationMethod(.catmullRom)
-                        //lost current, highest current.
+                        //lowest current, highest current.
 //                        .chartYScale(domain: [0, 100])
                     }
                 }
@@ -48,7 +48,7 @@ struct TwoDaySwiftUIView: View {
             .padding()
             
     // 10-day line mark
-            GroupBox( "Last 1, Next 7 Day View") {
+            GroupBox("Last 1, Next 7 Day View") {
                 
                 Chart {
                     ForEach(eightDayChartableData()) { hour in
