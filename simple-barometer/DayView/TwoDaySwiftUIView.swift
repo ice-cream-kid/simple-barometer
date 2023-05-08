@@ -12,6 +12,7 @@ struct TwoDaySwiftUIView: View {
 
     weak var navigationController: UINavigationController?
     @State var localWeatherData: WeatherData!
+    @State var touchTitle = " "
     
     init(navigationController : UINavigationController, weatherData : WeatherData) {
         _localWeatherData = State(initialValue: weatherData)
@@ -22,16 +23,17 @@ struct TwoDaySwiftUIView: View {
         VStack {
     
     //top panel
-            
-            GroupBox("Current Conditions") {
-
-            }
-            .padding()
-    
+            GroupBox("Current Conditions") {}
             
     // 3-day line mark
-            GroupBox("3-Day View") {
-                
+            GroupBox(
+                label: Label("3-Day View", systemImage: "barometer")
+                    .foregroundColor(.cyan)
+            ) {
+                Label(touchTitle, systemImage: "hand.point.up.left.fill")
+                    .labelStyle(.titleOnly)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
                 Chart {
                     ForEach(threeDayChartableData()) { hour in
                         LineMark(
@@ -39,13 +41,27 @@ struct TwoDaySwiftUIView: View {
                             y: .value("Pressure", hour.pressure)
                         )
                         .interpolationMethod(.catmullRom)
-                        //lowest current, highest current.
-//                        .chartYScale(domain: [0, 100])
                     }
                 }
                 .chartYScale(domain: .automatic(includesZero: false))
+                .chartOverlay { proxy in
+                    GeometryReader { geometry in
+                        Rectangle().fill(.clear).contentShape(Rectangle())
+//                            .gesture(DragGesture()
+//                                .onChanged { value in
+//                                    updateSelectedDate(at: value.location,
+//                                                       proxy: proxy,
+//                                                       geometry: geometry)
+//                                }
+//                            )
+                            .onTapGesture { location in
+                                updateSelectedDate(at: location,
+                                                   proxy: proxy,
+                                                   geometry: geometry)
+                            }
+                    }
+                }
             }
-            .padding()
             
     // 10-day line mark
             GroupBox("Last 1, Next 7 Day View") {
@@ -61,7 +77,6 @@ struct TwoDaySwiftUIView: View {
                 }
                 .chartYScale(domain: .automatic(includesZero: false))
             }
-            .padding()
         }
     }
     
@@ -125,7 +140,24 @@ struct TwoDaySwiftUIView: View {
         return pressureHoursToGraph
     }
     
-    
+    private func updateSelectedDate(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {
+        
+        let xPosition = location.x - geometry[proxy.plotAreaFrame].origin.x
+        guard let date: Date = proxy.value(atX: xPosition) else {
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd HH:mm"
+        dateFormatter.timeZone = NSTimeZone.local
+        
+        let yPosition = location.y - geometry[proxy.plotAreaFrame].origin.y
+        guard let pressure: Double = proxy.value(atY: yPosition) else {
+            return
+        }
+        
+        touchTitle = dateFormatter.string(from: date) + " " + String(format: "%.2f", pressure)
+    }
 }
 
 
