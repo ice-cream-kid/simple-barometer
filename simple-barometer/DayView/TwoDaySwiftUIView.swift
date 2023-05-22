@@ -11,11 +11,23 @@ import Charts
 struct TwoDaySwiftUIView: View {
 
     weak var navigationController: UINavigationController?
-    @State var localWeatherData: WeatherData!
-    @State var touchTitle = " "
+    @State private var localWeatherData: WeatherData!
+    
+    @State private var isDragging = false
+    @State private var touchTitle = " "
+    @State private var touchPointDate = Calendar.current.startOfDay(for: Date())
+    @State private var touchPointPressure = 0.0
+    
+    private var threeDayArray  = [PressureHour]()
+    private var eightDayArray =  [PressureHour]()
     
     init(navigationController : UINavigationController, weatherData : WeatherData) {
         _localWeatherData = State(initialValue: weatherData)
+        threeDayArray = threeDayChartableData()
+        eightDayArray = eightDayChartableData()
+        
+        //if nsuserdefault empty
+        // write to default
     }
     
     var body: some View {
@@ -28,37 +40,40 @@ struct TwoDaySwiftUIView: View {
     // 3-day line mark
             GroupBox(
                 label: Label("3-Day View", systemImage: "barometer")
+                    .labelStyle(.titleOnly)
                     .foregroundColor(.cyan)
             ) {
                 Label(touchTitle, systemImage: "hand.point.up.left.fill")
                     .labelStyle(.titleOnly)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
                                 
                 Chart {
-                    ForEach(threeDayChartableData()) { hour in
+                    ForEach(threeDayArray) { hour in
                         LineMark(
                             x: .value("Time", hour.dateTime),
                             y: .value("Pressure", hour.pressure)
                         )
                         .interpolationMethod(.catmullRom)
                     }
+                    RuleMark(x: .value("", touchPointDate))
+                        .foregroundStyle(Color(isDragging ? UIColor.white : UIColor.clear))
                 }
+                
                 .chartYScale(domain: .automatic(includesZero: false))
                 .chartOverlay { proxy in
                     GeometryReader { geometry in
                         Rectangle().fill(.clear).contentShape(Rectangle())
-//                            .gesture(DragGesture()
-//                                .onChanged { value in
-//                                    updateSelectedDate(at: value.location,
-//                                                       proxy: proxy,
-//                                                       geometry: geometry)
-//                                }
-//                            )
-                            .onTapGesture { location in
-                                updateSelectedDate(at: location,
-                                                   proxy: proxy,
-                                                   geometry: geometry)
-                            }
+                            .gesture(DragGesture(minimumDistance: 0)
+                                .onChanged { value in
+                                    displayTouchPointData(at: value.location,
+                                                       proxy: proxy,
+                                                       geometry: geometry)
+                                    isDragging = true
+                                }
+                                .onEnded {_ in
+                                    isDragging = false
+                                }
+                            )
                     }
                 }
             }
@@ -106,13 +121,11 @@ struct TwoDaySwiftUIView: View {
         for day in localWeatherData.days {
                         
             let dayDate = dateFormatter.date(from: day.datetime)!
-            
             let today = Calendar.current.startOfDay(for: Date())
-
-            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
             let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-                        
-            if (dayDate == yesterday || dayDate == Date() || dayDate == tomorrow) {
+            let tomorrowPlusOne = Calendar.current.date(byAdding: .day, value: 2, to: today)!
+
+            if (dayDate == today || dayDate == tomorrow || dayDate == tomorrowPlusOne) {
                 
                 for hour in day.hours {
                     let dateTimeString = day.datetime.appending("-").appending(hour.datetime)
@@ -140,23 +153,47 @@ struct TwoDaySwiftUIView: View {
         return pressureHoursToGraph
     }
     
-    private func updateSelectedDate(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {
+    private func displayTouchPointData(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {
         
         let xPosition = location.x - geometry[proxy.plotAreaFrame].origin.x
-        guard let date: Date = proxy.value(atX: xPosition) else {
+        guard let xDate: Date = proxy.value(atX: xPosition) else {
             return
         }
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd HH:mm"
+        dateFormatter.dateFormat = "HH:mm" //EEEE, MMM d
         dateFormatter.timeZone = NSTimeZone.local
         
         let yPosition = location.y - geometry[proxy.plotAreaFrame].origin.y
-        guard let pressure: Double = proxy.value(atY: yPosition) else {
+        
+        // we don't want the value of the TOUCHED YYY POSITION.
+        // we need value of the pressure of the touched XXX position
+        
+        
+//        (lldb) po threeDayArray
+//        ▿ 72 elements
+//          ▿ 0 : PressureHour
+//            ▿ id : 0BFB3CA8-893F-411B-BDCF-628836F9D193
+//              - uuid : "0BFB3CA8-893F-411B-BDCF-628836F9D193"
+//            - dateTimeString : "2023-05-22-00:00:00"
+//            - pressure : 30.11162296243799
+//            ▿ dateTime : 2023-05-22 04:00:00 +0000
+//              - timeIntervalSinceReferenceDate : 706420800.0
+        
+        guard let yPressure: Double = threeDayArray.first(where: { $0.dateTime == xDate})?.pressure else {
+
             return
         }
         
-        touchTitle = dateFormatter.string(from: date) + " " + String(format: "%.2f", pressure)
+//        pressure = threeDayChartableData().first(where: { $0.dateTime == date})?.pressure
+        
+//        print(pressure)
+        
+        // limit to end of visible data!
+        
+        touchTitle = dateFormatter.string(from: xDate) + " " + String(format: "%.2f", yPressure)
+        touchPointDate = xDate
+        touchPointPressure = yPressure
     }
 }
 
